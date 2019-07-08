@@ -2,8 +2,9 @@ const { sendRequest, requestType, elementType } = require("./requests");
 
 const resolvers = {
   Query: {
-    posts: () => sendRequest(elementType.POSTS, requestType.GET),
-    post: () => sendRequest(elementType.POSTS, requestType.GET, args.id),
+    posts: async () => sendRequest(elementType.POSTS, requestType.GET),
+    post: async (parent, args) =>
+      sendRequest(elementType.POSTS, requestType.GET, args.id),
 
     comments: async () => sendRequest(elementType.COMMENTS, requestType.GET),
     comment: async (parent, args) =>
